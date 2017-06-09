@@ -4725,6 +4725,14 @@ freeze_unroll_actions(const struct ofpact *a, const struct ofpact *end,
         case OFPACT_CT:
         case OFPACT_CT_CLEAR:
         case OFPACT_NAT:
+        case OFPACT_VIRO_PUSH_FD:
+        case OFPACT_VIRO_POP_FD:
+        case OFPACT_VIRO_SET_VID_SW_FD:
+        case OFPACT_VIRO_SET_VID_SW_SRC:
+        case OFPACT_VIRO_SET_VID_SW_DST:
+        case OFPACT_VIRO_SET_VID_HOST_FD:
+        case OFPACT_VIRO_SET_VID_HOST_SRC:
+        case OFPACT_VIRO_SET_VID_HOST_DST:
             /* These may not generate PACKET INs. */
             break;
 
@@ -4988,6 +4996,14 @@ recirc_for_mpls(const struct ofpact *a, struct xlate_ctx *ctx)
     case OFPACT_WRITE_ACTIONS:
     case OFPACT_WRITE_METADATA:
     case OFPACT_GOTO_TABLE:
+    case OFPACT_VIRO_PUSH_FD:
+    case OFPACT_VIRO_POP_FD:
+    case OFPACT_VIRO_SET_VID_SW_FD:
+    case OFPACT_VIRO_SET_VID_SW_SRC:
+    case OFPACT_VIRO_SET_VID_SW_DST:
+    case OFPACT_VIRO_SET_VID_HOST_FD:
+    case OFPACT_VIRO_SET_VID_HOST_SRC:
+    case OFPACT_VIRO_SET_VID_HOST_DST:
     default:
         break;
     }

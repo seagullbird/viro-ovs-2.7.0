@@ -494,6 +494,7 @@ odp_execute_masked_set_action(struct dp_packet *packet,
     case OVS_KEY_ATTR_ICMPV6:
     case OVS_KEY_ATTR_TCP_FLAGS:
     case __OVS_KEY_ATTR_MAX:
+    case OVS_KEY_ATTR_VIRO:
     default:
         OVS_NOT_REACHED();
     }
@@ -562,6 +563,8 @@ requires_datapath_assistance(const struct nlattr *a)
     case OVS_ACTION_ATTR_PUSH_MPLS:
     case OVS_ACTION_ATTR_POP_MPLS:
     case OVS_ACTION_ATTR_TRUNC:
+    case OVS_ACTION_ATTR_VIRO_PUSH_FD:
+    case OVS_ACTION_ATTR_VIRO_POP_FD:
         return false;
 
     case OVS_ACTION_ATTR_UNSPEC:

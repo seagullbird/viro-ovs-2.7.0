@@ -1024,6 +1024,7 @@ sflow_read_set_action(const struct nlattr *attr,
     case OVS_KEY_ATTR_CT_LABELS:
     case OVS_KEY_ATTR_UNSPEC:
     case __OVS_KEY_ATTR_MAX:
+    case OVS_KEY_ATTR_VIRO:
     default:
         break;
     }
@@ -1164,6 +1165,8 @@ dpif_sflow_read_actions(const struct flow *flow,
 	case OVS_ACTION_ATTR_SAMPLE:
 	case OVS_ACTION_ATTR_UNSPEC:
 	case __OVS_ACTION_ATTR_MAX:
+    case OVS_ACTION_ATTR_VIRO_PUSH_FD:
+    case OVS_ACTION_ATTR_VIRO_POP_FD:
 	default:
 	    break;
 	}

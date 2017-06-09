@@ -329,7 +329,7 @@ parse_mpls(const void **datap, size_t *sizep)
 }
 
 /* Pulls the VIRO headers at '*datap'. */
-static struct viro_hdr*
+static const struct viro_hdr*
 pull_viro(const void **datap, size_t *sizep)
 {
     return data_try_pull(datap, sizep, sizeof(struct viro_hdr));

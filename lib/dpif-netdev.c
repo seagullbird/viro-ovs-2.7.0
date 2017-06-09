@@ -4725,6 +4725,8 @@ dp_execute_cb(void *aux_, struct dp_packet_batch *packets_,
     case OVS_ACTION_ATTR_UNSPEC:
     case OVS_ACTION_ATTR_TRUNC:
     case __OVS_ACTION_ATTR_MAX:
+    case OVS_ACTION_ATTR_VIRO_PUSH_FD:
+    case OVS_ACTION_ATTR_VIRO_POP_FD:
         OVS_NOT_REACHED();
     }
 
