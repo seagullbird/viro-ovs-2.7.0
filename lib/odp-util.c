@@ -3390,6 +3390,29 @@ scan_be16(const char *s, ovs_be16 *key, ovs_be16 *mask)
 }
 
 static int
+scan_be32(const char *s, ovs_be32 *key, ovs_be32 *mask)
+{
+    uint32_t key_, mask_;
+    int n;
+
+    if (ovs_scan(s, "%"SCNi32"%n", &key_, &n)) {
+        int len = n;
+
+        *key = htonl(key_);
+        if (mask) {
+            if (ovs_scan(s + len, "/%"SCNi32"%n", &mask_, &n)) {
+                len += n;
+                *mask = htonl(mask_);
+            } else {
+                *mask = OVS_BE32_MAX;
+            }
+        }
+        return len;
+    }
+    return 0;
+}
+
+static int
 scan_be64(const char *s, ovs_be64 *key, ovs_be64 *mask)
 {
     uint64_t key_, mask_;
@@ -4180,11 +4203,11 @@ parse_odp_key_mask_attr(const char *s, const struct simap *port_names,
     } SCAN_END(OVS_KEY_ATTR_SCTP);
 
     SCAN_BEGIN("viro(", struct ovs_key_viro) {
-        SCAN_FIELD("src_sw=", be16, sw_src);
+        SCAN_FIELD("src_sw=", be32, sw_src);
         SCAN_FIELD("src_host=", be16, host_src);
-        SCAN_FIELD("dst_sw", be16, sw_dst);
+        SCAN_FIELD("dst_sw", be32, sw_dst);
         SCAN_FIELD("dst_host=", be16, host_dst);
-        SCAN_FIELD("fd_sw=", be16, sw_fd);
+        SCAN_FIELD("fd_sw=", be32, sw_fd);
         SCAN_FIELD("fd_host=", be16, host_fd);
     } SCAN_END(OVS_KEY_ATTR_VIRO);
 
