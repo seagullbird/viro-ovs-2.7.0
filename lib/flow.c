@@ -640,7 +640,7 @@ miniflow_extract(struct dp_packet *packet, struct miniflow *dst)
         miniflow_push_be32(mf, viro_fd_sw, vh->fd_sw);
         miniflow_push_be16(mf, viro_fd_host, vh->fd_host);
 
-        void *p = data;
+        char *p = data;
         ovs_be32 dst_sw;
         ovs_be16 dst_host;
         memcpy(&dst_sw, p, 4);
