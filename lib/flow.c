@@ -635,7 +635,7 @@ miniflow_extract(struct dp_packet *packet, struct miniflow *dst)
     }
 
     /* Parse viro. */
-    if (OVS_LIKELY(dl_type == htons(ETH_TYPE_VIRO)) && flow != NULL) {
+    if (OVS_LIKELY(dl_type == htons(ETH_TYPE_VIRO))) {
         const struct viro_hdr *vh = pull_viro(&data, &size);
         miniflow_push_be32(mf, viro_fd_sw, vh->fd_sw);
         miniflow_push_be16(mf, viro_fd_host, vh->fd_host);
